@@ -1,11 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "../styles/Dashboard.css";
 
 const Dashboard = ({ events, deleteEvent }) => {
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
-      deleteEvent(id);
+      try {
+        const response = await fetch(`http://localhost:5000/api/event/deleteEvent`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+        });
+
+        if (response.ok) {
+          console.log("Event deleted successfully"); 
+          navigate("/");
+        } else {
+          console.error("Failed to delete event:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error deleting event:", error);
+      }
     }
   };
 

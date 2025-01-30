@@ -15,6 +15,7 @@ const UpdateEventPage = ({ events, updateEvent }) => {
     location: "",
     description: "",
     image: "",
+    eventId:"",
   });
 
   useEffect(() => {
@@ -41,10 +42,40 @@ const UpdateEventPage = ({ events, updateEvent }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateEvent(updatedEvent);
-    navigate("/");
+   
+    const eventData = {
+      name: event.name,
+      date: event.date,
+      time: event.time,
+      location: event.location,
+      description: event.description,
+      image: event.image, 
+      eventId: event.id, 
+    };
+  
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/event/updateEvent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+          Authorization: `Bearer ${token}`, 
+        },
+        body: JSON.stringify(eventData), 
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Event updated successfully:", data);
+        navigate("/"); 
+      } else {
+        console.error("Failed to update event:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   if (!event) {

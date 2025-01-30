@@ -32,11 +32,40 @@ const AddEventPage = ({ addEvent }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newEvent = { ...event, id: Date.now() };
-    addEvent(newEvent);
-    navigate("/");
+    const eventData = {
+      name: event.name,
+      date: event.date,
+      time: event.time,
+      location: event.location,
+      description: event.description,
+      image: event.image, 
+      eventId: event.id, 
+    };
+  
+    try {
+      const token=localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/event/createEvent", {
+        
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(eventData),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Event created successfully:", data);
+        navigate("/"); 
+      } else {
+        console.error("Failed to create event:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
