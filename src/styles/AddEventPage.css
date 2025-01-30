@@ -1,0 +1,42 @@
+/* AddEventPage.css */
+.add-event-page {
+  max-width: 600px;
+  margin: 50px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-event-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.add-event-page form input,
+.add-event-page form textarea,
+.add-event-page form button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-event-page form input[type="file"] {
+  border: none;
+}
+
+.add-event-page form button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-event-page form button:hover {
+  background: #0056b3;
+}

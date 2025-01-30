@@ -1,0 +1,217 @@
+/* General Dashboard Styling */
+.dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #003366; 
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px 10px 0 0;
+}
+
+.club-name {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.add-event-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.add-event-button {
+  background-color: #4CAF50;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.add-event-button:hover {
+  background-color: #45a049;
+}
+
+.event-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.event-card {
+  background-color: #003366; /* Dark blue for event cards */
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background: linear-gradient(145deg, #005b8d, #003366); /* Darker gradient */
+  color: #fff; /* Ensure text stays white */
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(145deg, #005b8d, #003355); /* Subtle darkening effect */
+}
+
+.event-card-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  position: relative;
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay to enhance visibility */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.event-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-overlay-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.event-info {
+  padding: 15px;
+}
+
+.event-card:hover .event-info {
+  background-color: #1e3d58; /* Slightly darker background on hover */
+}
+
+.event-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.event-date-time,
+.event-location {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin: 5px 0;
+}
+
+.event-description {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 10px 0;
+}
+
+.event-card-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.update-button,
+.delete-button {
+  text-decoration: none;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.update-button {
+  background-color: #f8b400;
+  color: #fff;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.update-button:hover {
+  background-color: #f39c12;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.no-events {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .add-event-container {
+    margin-top: 15px;
+  }
+
+  .event-cards-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+    padding: 10px;
+  }
+
+  .event-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card {
+    border-radius: 8px;
+  }
+
+  .event-name {
+    font-size: 1.3rem;
+  }
+
+  .event-info {
+    padding: 10px;
+  }
+
+  .update-button,
+  .delete-button {
+    padding: 6px 12px;
+  }
+}
