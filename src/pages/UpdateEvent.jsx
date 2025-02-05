@@ -12,6 +12,7 @@ export default function UpdateEvent() {
     name: "",
     date: "",
     location: "",
+    description:"",
     image: "",
   });
   const [loading, setLoading] = useState(false);
@@ -61,6 +62,7 @@ export default function UpdateEvent() {
     const formData = new FormData();
     formData.append("name", event.name);
     formData.append("date", event.date);
+    formData.append("description",event.description);
     formData.append("location", event.location);
     if (event.image instanceof File) {
       formData.append("image", event.image); // Append new image only if changed
@@ -99,6 +101,17 @@ export default function UpdateEvent() {
               type="text"
               name="name"
               value={event.name}
+              onChange={handleChange}
+              className="w-full p-2 border rounded-lg mt-1"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-semibold">Event Description</label>
+            <textarea
+              type="text"
+              name="description"
+              value={event.description}
               onChange={handleChange}
               className="w-full p-2 border rounded-lg mt-1"
               required
