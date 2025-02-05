@@ -17,6 +17,7 @@ export async function login(clubName, password, navigate) {
 
       // Save token and redirect
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("clubName", response.data.name);
       toast.success("Login successful!");
       navigate("/home"); // Redirect to the dashboard page
     } catch (error) {
@@ -39,7 +40,6 @@ export async function signup(clubName, password, confirmPassword, navigate) {
 
         const options = { clubName, password };
         const response = await APIconnector("POST", SIGNUP, options);
-        console.log(response.data);
         
         if (!response.data.success) {
             throw new Error(response.data.message || "Signup failed");
