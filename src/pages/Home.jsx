@@ -49,27 +49,27 @@ export default function EventList() {
 
   return (
     <div className="min-h-screen max-h-max">
-      <header className="text-3xl font-exo h-[4rem] flex justify-center items-center sticky shadow-xl w-screen left-0 top-0 font-bold text-center text-gray-800 ">
-        {clubName ? clubName : "Events List"}{" "}
-      </header>
-      <div className="fixed flex flex-col bottom-4 right-4 ">
-        <button
-          className="hover:rotate-90 duration-200"
-          onClick={() => navigate("/addEvent")}
-        >
-          <IoIosAddCircle size={55} />
-        </button>
+      <div className="text-2xl font-exo h-[4rem] flex justify-between pl-9 items-center fixed z-20 bg-white shadow-xl w-screen left-0 top-0 font-bold text-center text-gray-800 ">
+        <p>{clubName ? clubName : "Events List"} </p>
+        <div className=" flex  z-10  rounded-lg p-2  bottom-4 right-4 ">
+          <button
+            className="hover:rotate-90 duration-200"
+            onClick={() => navigate("/addEvent")}
+          >
+            <IoIosAddCircle size={35} />
+          </button>
 
-        <button
-          className="hover:rotate-180 duration-200"
-          onClick={() =>{
-            localStorage.removeItem("token")
-            localStorage.removeItem("clubName")
-            navigate('/')
-          }}
-        >
-          <IoMdLogOut size={55} />
-        </button>
+          <button
+            className="hover:rotate-180 duration-200"
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("clubName");
+              navigate("/");
+            }}
+          >
+            <IoMdLogOut size={35} />
+          </button>
+        </div>
       </div>
       {loading ? (
         <div className="flex justify-center items-center min-h-[200px]">
@@ -80,7 +80,7 @@ export default function EventList() {
           <p className="text-center text-gray-500">No events found :(</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-3 mt-4 p-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 mt-[4rem] p-5 gap-6">
           {events.map((event) => (
             <div
               key={event._id}
@@ -95,9 +95,7 @@ export default function EventList() {
                 <h2 className="text-lg font-bold text-gray-800">
                   {event.name}
                 </h2>
-                <p>
-                  {event.description}
-                </p>
+                <p>{event.description}</p>
                 <p className="text-sm text-gray-500">
                   {event.date} - {event.location}
                 </p>
@@ -109,7 +107,7 @@ export default function EventList() {
                 >
                   UPDATE
                 </button>
-                <div className="flex justify-center items-center gap-5">
+                <div className="flex justify-center items-center gap-5 ">
                   <button onClick={() => handleDelete(event._id)}>
                     <MdDelete color="#184C4E" size={35} />
                   </button>
